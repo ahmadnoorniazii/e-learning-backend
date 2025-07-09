@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "enrollments",
+  "info": {
+    "singularName": "enrollment",
+    "pluralName": "enrollments",
+    "displayName": "Enrollment",
+    "description": "Student course enrollments"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "enrolledAt": {
+      "type": "datetime",
+      "default": null
+    },
+    "enrollmentStatus": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "completed",
+        "suspended",
+        "cancelled"
+      ],
+      "required": true,
+      "default": "active"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "enrollments"
+    },
+    "course": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "enrollments"
+    }
+  }
+}
